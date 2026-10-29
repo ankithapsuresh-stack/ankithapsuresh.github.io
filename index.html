@@ -1,207 +1,230 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
-
+  <meta name="description" content="Academic portfolio showcasing projects, coursework, writing, and resume.">
+  <title>Academic Portfolio | Your Name</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+    :root {
+      --navy: #172554;
+      --blue: #1d4ed8;
+      --pale-blue: #dbeafe;
+      --page: #f5f7fb;
+      --ink: #222;
+      --muted: #536078;
+      --white: #fff;
     }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #222;
-      line-height: 1.7;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; background: var(--page); color: var(--ink); line-height: 1.7; }
     header {
-      background: #172554;
-      color: white;
-      padding: 18px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      position: sticky; top: 0; z-index: 10;
+      background: var(--navy); color: white; padding: 16px 6%;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
     }
-
-    header h2 {
-      color: #93c5fd;
+    header h2 { color: #93c5fd; font-size: 1.25rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 12px; }
+    nav a { color: white; text-decoration: none; font-size: .92rem; }
+    nav a:hover, nav a:focus { color: #93c5fd; text-decoration: underline; }
+    section { padding: 58px 10%; scroll-margin-top: 90px; }
+    .hero { min-height: 330px; background: var(--pale-blue); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
+    .hero p { font-size: 1.1rem; max-width: 760px; }
+    h2 { color: var(--navy); margin-bottom: 18px; line-height: 1.25; }
+    h3 { color: var(--navy); margin-bottom: 8px; }
+    p { margin-bottom: 12px; }
+    .button, .file-link {
+      display: inline-block; margin-top: 12px; padding: 10px 18px; background: var(--blue);
+      color: white; text-decoration: none; border-radius: 6px; font-weight: 600;
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 16px;
+    .button:hover, .file-link:hover { background: var(--navy); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+    .card { background: var(--white); padding: 22px; border-radius: 10px; box-shadow: 0 4px 14px #0000000d; min-width: 0; }
+    .card p:last-child { margin-bottom: 0; }
+    .eyebrow { color: var(--blue); text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; font-weight: bold; margin-bottom: 8px; }
+    .note { border-left: 4px solid var(--blue); padding: 12px 16px; background: #eaf1ff; border-radius: 4px; color: #24324a; }
+    .photo-placeholder {
+      min-height: 155px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; background: #edf2f7; border: 2px dashed #9aa9bd; border-radius: 8px; padding: 16px; margin: 12px 0;
+      color: #43516a;
     }
-
-    nav a:hover {
-      color: #93c5fd;
-    }
-
-    section {
-      padding: 65px 10%;
-    }
-
-    .hero {
-      min-height: 340px;
-      background: #dbeafe;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: #172554;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #1d4ed8;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-
-    h2 {
-      margin-bottom: 18px;
-      color: #172554;
-    }
-
-    .skills, .projects {
-      display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(200px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 10px;
-      box-shadow: 0 4px 14px #0000000d;
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-    }
-
-    .card a {
-      color: #1d4ed8;
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px;
-      background: #172554;
-      color: white;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav a {
-        margin: 0 12px 0 0;
-      }
+    .photo-placeholder strong { color: var(--navy); }
+    .small { font-size: .9rem; color: var(--muted); }
+    .assignment-cover { border: 1px solid #d7deea; padding: 20px; background: #f8faff; border-radius: 8px; margin: 12px 0; }
+    ul { padding-left: 22px; margin: 8px 0 12px; }
+    footer { text-align: center; padding: 24px; background: var(--navy); color: white; }
+    footer p { margin: 0; }
+    a { overflow-wrap: anywhere; }
+    @media (max-width: 700px) {
+      header { position: static; align-items: flex-start; flex-direction: column; }
+      nav { gap: 10px 14px; }
+      section { padding: 42px 6%; }
     }
   </style>
 </head>
-
 <body>
   <header>
-    <h2>My Portfolio</h2>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
+    <h2>Your Name | Academic Portfolio</h2>
+    <nav aria-label="Main navigation">
+      <a href="#introduction">Introduction</a>
       <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#courses">Courses</a>
+      <a href="#writing">Sample Writing</a>
+      <a href="#research">Research</a>
+      <a href="#resume">Resume</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Hi, I'm Your Name!</h1>
-    <p>
-      I'm a student passionate about technology,
-      programming, and building creative projects.
-    </p>
+    <p class="eyebrow">VIT · Academic Portfolio</p>
+    <h1>Hello, I'm Your Name</h1>
+    <p>[Write one short sentence introducing yourself, your programme, and your main academic interests.]</p>
     <a class="button" href="#projects">Explore My Work</a>
   </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I'm currently studying Your Course at Your College.
-      I enjoy learning new technologies, solving problems,
-      and developing useful applications.
-    </p>
-  </section>
-
-  <section id="skills">
-    <h2>My Skills</h2>
-    <div class="skills">
-      <div class="card">
-        <h3>HTML</h3>
-        <p>Building webpage structures.</p>
-      </div>
-      <div class="card">
-        <h3>CSS</h3>
-        <p>Designing attractive websites.</p>
-      </div>
-      <div class="card">
-        <h3>JavaScript</h3>
-        <p>Adding interactive features.</p>
-      </div>
+  <section id="introduction">
+    <h2>1. Introduction</h2>
+    <div class="card">
+      <h3>Who I Am</h3>
+      <p>[Paragraph 1: Introduce yourself, the programme/course you are studying at VIT, your year of study, and relevant interests.]</p>
+      <h3>Why I Chose This Field</h3>
+      <p>[Paragraph 2: Explain why you chose this subject, what questions or problems interest you, and what you hope to do with your knowledge in the future.]</p>
+      <h3>About This Portfolio</h3>
+      <p>[Paragraph 3: Give readers an overview of this portfolio, mentioning the projects, three courses, writing samples, and resume included below.]</p>
     </div>
   </section>
 
   <section id="projects">
-    <h2>My Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Project One</h3>
-        <p>A short description of your project.</p>
-        <a href="https://github.com/">View Project</a>
+    <h2>2. Projects</h2>
+    <p>Present at least one project in detail. Replace the prompts below with information about work you have actually completed or are currently doing.</p>
+    <article class="card">
+      <p class="eyebrow">Project 1</p>
+      <h3>[Project Title]</h3>
+      <p><strong>Project overview:</strong> [What is the project about? What problem, question, or goal does it address?]</p>
+      <p><strong>Methods:</strong> [Explain how you are doing the project: steps, tools, materials, research methods, data collection, or teamwork.]</p>
+      <p><strong>Results / expected results:</strong> [Describe the actual outcome. If it is ongoing, explain what you expect to learn or produce.]</p>
+      <h3>Project Photographs</h3>
+      <div class="grid">
+        <div>
+          <div class="photo-placeholder">
+            <strong>Replace with your project photo</strong>
+            <span class="small">Upload an image to your GitHub repository, then replace this box with an img element.</span>
+          </div>
+          <p class="small">Figure 1: [Caption explaining what this photograph shows.]</p>
+        </div>
+        <div>
+          <div class="photo-placeholder">
+            <strong>Replace with another project photo</strong>
+            <span class="small">Use a real photograph of your process, materials, prototype, fieldwork, or outcome.</span>
+          </div>
+          <p class="small">Figure 2: [Caption explaining what this photograph shows.]</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Project Two</h3>
-        <p>Describe another project you created.</p>
-        <a href="https://github.com/">View Project</a>
-      </div>
+      <p><strong>My contribution / reflection:</strong> [Explain your role, what you learned, and what you would improve next time.]</p>
+    </article>
+  </section>
+
+  <section id="teaching">
+    <h2>3. Teaching (Optional)</h2>
+    <div class="card">
+      <p>[If you have tutoring, peer mentoring, teaching, or workshop experience, describe who you supported, what you taught, and what you learned.]</p>
+      <p class="small">If you do not have relevant experience, you can omit this section or write: “I have not yet had a formal teaching role, but I value peer learning and collaborative study.”</p>
+    </div>
+  </section>
+
+  <section id="courses">
+    <h2>4. Classes / Courses Taken at VIT</h2>
+    <p>Choose three important courses you attended at VIT. Include specific subject knowledge and skills gained from each.</p>
+    <div class="grid">
+      <article class="card">
+        <p class="eyebrow">Course 1</p>
+        <h3>[Course Name]</h3>
+        <p><strong>What it covered:</strong> [Summarise key topics or concepts.]</p>
+        <p><strong>What I learned:</strong> [Describe subject knowledge, practical skills, tools, or ways of thinking you developed.]</p>
+        <p><strong>How I will use it:</strong> [Connect the learning to a project, future course, or career goal.]</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Course 2</p>
+        <h3>[Course Name]</h3>
+        <p><strong>What it covered:</strong> [Summarise key topics or concepts.]</p>
+        <p><strong>What I learned:</strong> [Describe subject knowledge and skills developed.]</p>
+        <p><strong>How I will use it:</strong> [Explain its relevance to your goals.]</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Course 3</p>
+        <h3>[Course Name]</h3>
+        <p><strong>What it covered:</strong> [Summarise key topics or concepts.]</p>
+        <p><strong>What I learned:</strong> [Describe subject knowledge and skills developed.]</p>
+        <p><strong>How I will use it:</strong> [Explain its relevance to your goals.]</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="writing">
+    <h2>5. Sample Writing</h2>
+    <p>Include two assignments you are proud of: one English assignment and one subject-related assignment. For each, provide a cover page or introductory page, a short explanation, and the full assignment as a PDF or linked document.</p>
+    <div class="grid">
+      <article class="card">
+        <p class="eyebrow">Writing Sample 1</p>
+        <h3>English Assignment: [Title]</h3>
+        <div class="assignment-cover">
+          <p><strong>Assignment title:</strong> [Title]</p>
+          <p><strong>Course:</strong> [English course name]</p>
+          <p><strong>Summary:</strong> [Briefly explain the assignment's topic and purpose.]</p>
+          <p><strong>Why I chose it:</strong> [Explain how it demonstrates your writing, analysis, research, or argumentation skills.]</p>
+        </div>
+        <p><strong>Assignment file:</strong> Upload your PDF to the repository and link it here.</p>
+        <p><a class="file-link" href="#" aria-label="Replace with English assignment PDF link">Add English Assignment PDF Link</a></p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Writing Sample 2</p>
+        <h3>Subject Assignment: [Title]</h3>
+        <div class="assignment-cover">
+          <p><strong>Assignment title:</strong> [Title]</p>
+          <p><strong>Course:</strong> [Relevant subject course]</p>
+          <p><strong>Summary:</strong> [Briefly explain the topic, question, or task.]</p>
+          <p><strong>Why I chose it:</strong> [Explain how it demonstrates your subject knowledge, methods, evidence, or problem-solving.]</p>
+        </div>
+        <p><strong>Assignment file:</strong> Upload your PDF to the repository and link it here.</p>
+        <p><a class="file-link" href="#" aria-label="Replace with subject assignment PDF link">Add Subject Assignment PDF Link</a></p>
+      </article>
+    </div>
+    <p class="note">Before publishing, replace each <code>href="#"</code> with the actual PDF path or URL. Check that you have permission to share your assignments publicly.</p>
+  </section>
+
+  <section id="research">
+    <h2>6. Sample Research Paper (Optional)</h2>
+    <div class="card">
+      <h3>[Research Paper Title]</h3>
+      <p><strong>Research question:</strong> [What question does the paper investigate?]</p>
+      <p><strong>Summary / abstract:</strong> [Briefly describe the purpose, method, and main findings—or expected findings if still in progress.]</p>
+      <p><strong>Status:</strong> [In progress / completed / submitted]</p>
+      <p><a class="file-link" href="#" aria-label="Replace with research paper link">Add Research Paper Link</a></p>
+      <p class="small">If you do not have a research paper, you can omit this optional section.</p>
+    </div>
+  </section>
+
+  <section id="resume">
+    <h2>7. Resume</h2>
+    <div class="card">
+      <p>Add your one-page resume as a PDF. Make sure it includes your education, relevant skills, projects, experience or activities, and appropriate contact details.</p>
+      <p><a class="file-link" href="#" aria-label="Replace with resume PDF link">View / Download My Resume</a></p>
+      <p class="small">Replace the link with the path to your uploaded resume PDF, for example <code>files/resume.pdf</code> if you put it inside a folder named <code>files</code>.</p>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: your.email@example.com</p>
-    <p>
-      GitHub:
-      <a href="https://github.com/" target="_blank"
-         rel="noopener noreferrer">My GitHub Profile</a>
-    </p>
+    <h2>Contact</h2>
+    <div class="card">
+      <p><strong>Email:</strong> [Your professional email]</p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">[Your GitHub profile]</a></p>
+      <p><strong>LinkedIn:</strong> [Add your LinkedIn profile if you have one]</p>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2026 Your Name. All rights reserved.</p>
+    <p>&copy; 2026 Your Name · Academic Portfolio</p>
   </footer>
 </body>
 </html>
